@@ -1,3 +1,7 @@
 .*
 !.gitignore
 target/
+**/configuration/logging.properties
+**/configuration/standalone_xml_history/
+**/standalone/data/
+**/standalone/log/
