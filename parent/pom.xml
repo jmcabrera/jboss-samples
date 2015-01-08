@@ -16,7 +16,8 @@
     <!-- JBoss -->
     <jboss.base.dir>${basedir}/jboss</jboss.base.dir>
     <jboss.home.dir>${env.JBOSS_HOME}</jboss.home.dir>
-    <jboss.arquillian>7.2.0.Final</jboss.arquillian>
+    <arquillian.jboss>7.2.0.Final</arquillian.jboss>
+    <arquillian.drone>1.3.1.Final</arquillian.drone>
   </properties>
 
   <dependencyManagement>
@@ -28,6 +29,15 @@
         <version>1.1.5.Final</version>
         <scope>import</scope>
         <type>pom</type>
+      </dependency>
+
+      <!-- Arquillian Drone dependencies and WebDriver/Selenium dependencies -->
+      <dependency>
+        <groupId>org.jboss.arquillian.extension</groupId>
+        <artifactId>arquillian-drone-bom</artifactId>
+        <version>${arquillian.drone}</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -83,7 +93,7 @@
         <dependency>
           <groupId>org.jboss.as</groupId>
           <artifactId>jboss-as-arquillian-container-remote</artifactId>
-          <version>${jboss.arquillian}</version>
+          <version>${arquillian.jboss}</version>
           <scope>test</scope>
         </dependency>
         <dependency>
@@ -112,7 +122,7 @@
         <dependency>
           <groupId>org.jboss.as</groupId>
           <artifactId>jboss-as-arquillian-container-managed</artifactId>
-          <version>${jboss.arquillian}</version>
+          <version>${arquillian.jboss}</version>
           <scope>test</scope>
         </dependency>
         <dependency>
@@ -190,20 +200,20 @@
       </plugin>
 
       <!-- JBoss Mods -->
-      <!-- 
-      <plugin>
+      <!--
+        <plugin>
         <groupId>net.atos.xa</groupId>
         <artifactId>jbossmods-maven-plugin</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <executions>
-          <execution>
-            <id>populate</id>
-            <goals>
-              <goal>populate</goal>
-            </goals>
-          </execution>
+        <execution>
+        <id>populate</id>
+        <goals>
+        <goal>populate</goal>
+        </goals>
+        </execution>
         </executions>
-      </plugin>
+        </plugin>
       -->
     </plugins>
 
