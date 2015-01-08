@@ -30,9 +30,9 @@ public class SimpleRestTest {
 	}
 
 	@Test
-	public void banCustomerRaw(@ArquillianResteasyResource WebTarget webTarget) {
+	public void mainTest(@ArquillianResteasyResource WebTarget webTarget) {
 		String hello = "hello";
-		String result = webTarget.path("/rest/" + hello).request().get().readEntity(String.class);
+		String result = webTarget.path(SimpleRest.PATH + "/" + hello).request().get().readEntity(String.class);
 		Assert.assertEquals(SimpleRest.PREFIX + hello, result);
 	}
 }

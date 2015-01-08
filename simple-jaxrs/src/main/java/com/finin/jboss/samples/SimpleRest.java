@@ -11,8 +11,10 @@ import javax.ws.rs.PathParam;
  * @author a208220 - Juan Manuel CABRERA
  *
  */
-@Path("/rest")
+@Path(SimpleRest.PATH)
 public class SimpleRest {
+
+	public static final String	PATH		= "/rest";
 
 	public static final String	PREFIX	= "rest-";
 

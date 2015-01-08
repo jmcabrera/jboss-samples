@@ -33,7 +33,7 @@ public class SimpleCdiBeanTest {
 	private SimpleCdiBean	cdi;
 
 	@Test
-	public void testEjb() {
+	public void mainTest() {
 		String hello = "Hello!";
 		Assert.assertEquals(SimpleCdiBean.PREFIX + hello, cdi.echo(hello));
 	}

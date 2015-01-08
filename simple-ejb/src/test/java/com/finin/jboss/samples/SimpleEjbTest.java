@@ -33,7 +33,7 @@ public class SimpleEjbTest {
 	private SimpleEjb	ejb;
 
 	@Test
-	public void testEjb() {
+	public void mainTest() {
 		String hello = "Hello!";
 		Assert.assertEquals(SimpleEjb.PREFIX + hello, ejb.echo(hello));
 	}
