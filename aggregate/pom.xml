@@ -11,6 +11,6 @@
     <module>../simple-cdi</module>
     <module>../simple-ejb</module>
     <module>../simple-jaxrs</module>
-<!--     <module>../simple-jaxws</module> -->
+    <module>../simple-jaxws</module>
   </modules>
 </project>
