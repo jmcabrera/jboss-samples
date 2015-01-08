@@ -3,16 +3,11 @@
  */
 package com.finin.jboss.samples;
 
-import javax.ejb.LocalBean;
-import javax.ejb.Stateless;
-
 /**
  * @author a208220 - Juan Manuel CABRERA
  *
  */
-@Stateless
-@LocalBean
-public class SimpleEjb {
+public class SimpleCdiBean {
 
 	public static final String	PREFIX	= "ejb-";
 
