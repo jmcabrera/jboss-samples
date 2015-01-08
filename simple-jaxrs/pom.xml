@@ -6,7 +6,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
-  <artifactId>simple-rest</artifactId>
+  <artifactId>simple-jaxrs</artifactId>
   <packaging>war</packaging>
 
   <dependencies>
