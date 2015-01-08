@@ -20,6 +20,7 @@ public class SimpleRestTest {
 	public static Archive<?> createDeployment() {
 		WebArchive ar = ShrinkWrap.create(WebArchive.class) //
 				.addClass(SimpleRest.class) //
+				.addClass(JaxRsActivator.class) //
 		;
 		System.out.println("~~~ v Web Archive Content v ~~~");
 		ar.writeTo(System.out, Formatters.VERBOSE);
@@ -30,8 +31,8 @@ public class SimpleRestTest {
 
 	@Test
 	public void banCustomerRaw(@ArquillianResteasyResource WebTarget webTarget) {
-		String hello = "Hello!";
-		String result = webTarget.path("/").request().get().readEntity(String.class);
+		String hello = "hello";
+		String result = webTarget.path("/rest/" + hello).request().get().readEntity(String.class);
 		Assert.assertEquals(SimpleRest.PREFIX + hello, result);
 	}
 }

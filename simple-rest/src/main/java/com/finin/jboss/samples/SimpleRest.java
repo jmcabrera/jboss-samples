@@ -5,6 +5,7 @@ package com.finin.jboss.samples;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 /**
  * @author a208220 - Juan Manuel CABRERA
@@ -20,7 +21,8 @@ public class SimpleRest {
 	 * @return {@value #PREFIX} + msg
 	 */
 	@GET
-	public String echo(String msg) {
+	@Path("{msg}")
+	public String echo(@PathParam("msg") String msg) {
 		return PREFIX + msg;
 	}
 
