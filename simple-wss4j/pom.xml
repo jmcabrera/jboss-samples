@@ -1,0 +1,90 @@
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.finin.jboss.samples</groupId>
+    <artifactId>parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../parent/pom.xml</relativePath>
+  </parent>
+  <packaging>war</packaging>
+  <artifactId>simple-wss4j</artifactId>
+
+  <properties>
+    <cxf.version>2.7.11</cxf.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.ws.security</groupId>
+      <artifactId>wss4j</artifactId>
+      <version>1.6.15</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-api</artifactId>
+      <version>${cxf.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-codegen-plugin</artifactId>
+        <version>${cxf.version}</version>
+        <executions>
+          <execution>
+            <id>generate-cxf</id>
+            <phase>prepare-package</phase>
+            <configuration>
+              <sourceRoot>${basedir}/src/main/generated/</sourceRoot>
+              <wsdlOptions>
+                <wsdlOption>
+                  <wsdl>${project.build.directory}/generated/wsdl/SimpleWSS4j.wsdl</wsdl>
+                  <!-- <wsdl>${basedir}/src/main/resources/wsdl/test.xml</wsdl> -->
+                </wsdlOption>
+              </wsdlOptions>
+            </configuration>
+            <goals>
+              <goal>wsdl2java</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-java2ws-plugin</artifactId>
+        <version>${cxf.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>${cxf.version}</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>process-classes</id>
+            <phase>process-classes</phase>
+            <configuration>
+              <className>com.finin.jboss.samples.SimpleWSS4J</className>
+              <genWsdl>true</genWsdl>
+              <!-- <verbose>true</verbose> -->
+              <frontend>jaxws</frontend>
+              <databinding>jaxb</databinding>
+            </configuration>
+            <goals>
+              <goal>java2ws</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
