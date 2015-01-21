@@ -31,7 +31,7 @@ import org.apache.cxf.annotations.EndpointProperty;
 		// @EndpointProperty(key = "ws-security.callback-handler", value =
 		// "org.jboss.test.ws.jaxws.samples.wsse.policy.basic.KeystorePasswordCallback")
 		@EndpointProperty(key = "ws-security.username", value = "bob"),
-		@EndpointProperty(key = "ws-security.callback-handler", value = "com.finin.jboss.samples.KeystorePasswordCallback") })
+		@EndpointProperty(key = "ws-security.callback-handler", value = "com.finin.jboss.samples.PasswordCallback") })
 public class SimpleWSS4JImpl implements SimpleWSS4J {
 
 	public static final String	PREFIX	= "wss4j-";

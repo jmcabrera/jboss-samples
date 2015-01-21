@@ -17,10 +17,10 @@ import org.apache.ws.security.WSPasswordCallback;
  * @author a208220 - Juan Manuel CABRERA
  *
  */
-public class KeystorePasswordCallback implements CallbackHandler {
+public class PasswordCallback implements CallbackHandler {
 	private Map<String, String>	passwords	= new HashMap<String, String>();
 
-	public KeystorePasswordCallback() {
+	public PasswordCallback() {
 		passwords.put("alice", "alicepassword");
 		passwords.put("bob", "bobpassword");
 	}
