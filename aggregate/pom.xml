@@ -12,5 +12,7 @@
     <module>../simple-ejb</module>
     <module>../simple-jaxrs</module>
     <module>../simple-jaxws</module>
+    <module>../simple-servlet</module>
+    <module>../simple-wss4j</module>
   </modules>
 </project>
