@@ -39,21 +39,9 @@ public class SimpleWSS4JTest {
 				.addClass(SimpleWSS4J.class) //
 				.addClass(SimpleWSS4JImpl.class) //
 				.addClass(PasswordCallback.class) //
-				// .addAsResource("wsdl/test.xml") //
 				.addAsWebInfResource("wsdl/test.xml", "wsdl/test.xml")//
 				.addAsWebInfResource(new File("src/main/webapp/WEB-INF/jboss-webservices.xml"))//
-				.addAsWebInfResource(new File("src/main/webapp/WEB-INF/endpoint-config.xml"))
-				// .addAsManifestResource(new
-				// File("src/main/webapp/WEB-INF/endpoint-config.xml"))
-				// .addAsResource(new
-				// File("src/main/webapp/WEB-INF/endpoint-config.xml"))
-				// .addAsResource(new
-				// File("src/main/webapp/WEB-INF/endpoint-config.xml"),
-				// "META-INF/endpoint-config.xml")
-				// .add(new FileAsset(new
-				// File("src/main/webapp/WEB-INF/endpoint-config.xml")),
-				// "endpoint-config.xml") //
-				// Needed for JBoss to add WSS4J as a dependency of this deployment
+				.addAsWebInfResource(new File("src/main/webapp/WEB-INF/endpoint-config.xml"))//
 				.setManifest(new StringAsset("Dependencies: org.apache.ws.security,org.jboss.ws.api")) //
 		;
 		System.out.println("~~~ v Web Archive Content v ~~~");
