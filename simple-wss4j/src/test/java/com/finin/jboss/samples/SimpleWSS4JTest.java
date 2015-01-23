@@ -39,7 +39,7 @@ public class SimpleWSS4JTest {
 
 	@Deployment(testable = false)
 	public static Archive<?> createDeployment() {
-		WebArchive ar = ShrinkWrap.create(WebArchive.class, "web-test.war") //
+		WebArchive ar = ShrinkWrap.create(WebArchive.class) //
 				.addClass(SimpleWSS4J.class) //
 				.addClass(SimpleWSS4JImpl.class) //
 				.addClass(PasswordCallback.class) //
