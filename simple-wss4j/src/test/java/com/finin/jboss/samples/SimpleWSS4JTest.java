@@ -8,13 +8,17 @@ import static com.finin.jboss.samples.SimpleWSS4JImpl.PREFIX;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.ws.BindingProvider;
 import javax.xml.ws.Service;
 import javax.xml.ws.soap.SOAPFaultException;
 
+import org.apache.cxf.Bus;
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.frontend.ClientProxy;
+import org.apache.cxf.interceptor.Interceptor;
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -53,49 +57,52 @@ public class SimpleWSS4JTest {
 
 	@Test
 	@RunAsClient
-	public void mainTest(@ArquillianResource URL baseURL) throws MalformedURLException {
-		try {
-			String hello = "Hello!";
-			URL wsdlURL = new URL(baseURL + SN + "?wsdl");
-			Service service = Service.create(wsdlURL, SERVICE);
-			SimpleWSS4J client = service.getPort(PORT, SimpleWSS4J.class);
-
-			Client proxy = ClientProxy.getClient(client);
-			proxy.getOutInterceptors().add(new LoggingOutInterceptor());
-			proxy.getInInterceptors().add(new LoggingInInterceptor());
-
-			((BindingProvider) client).getRequestContext().put("ws-security.username", "kermitt");
-			((BindingProvider) client).getRequestContext().put("ws-security.password", "frogg");
-
-			Assert.assertEquals(PREFIX + hello, client.echo(hello));
-		}
-		catch (Throwable t) {
-			t.printStackTrace();
-			throw t;
-		}
+	public void okTest(@ArquillianResource URL baseURL) throws MalformedURLException {
+		String hello = "Hello!";
+		SimpleWSS4J client = getClient(baseURL, "kermitt", "frogg");
+		Assert.assertEquals(PREFIX + hello, client.echo(hello));
 	}
 
 	@Test(expected = SOAPFaultException.class)
 	@RunAsClient
 	public void koTest(@ArquillianResource URL baseURL) throws MalformedURLException {
-		String hello = "Hello!";
-		URL wsdlURL = new URL(baseURL + SN + "?wsdl");
-		Service service = Service.create(wsdlURL, SERVICE);
-		SimpleWSS4J client = service.getPort(PORT, SimpleWSS4J.class);
-		((BindingProvider) client).getRequestContext().put("ws-security.username", "kermitt");
-		((BindingProvider) client).getRequestContext().put("ws-security.password", "nofrogg");
-		client.echo(hello);
-		Assert.fail();
+		SimpleWSS4J client = getClient(baseURL);
+		Client unproxied = ClientProxy.getClient(client);
+		Bus bus = unproxied.getBus();
+		List<Interceptor<?>> out = new ArrayList<Interceptor<?>>();
+		try {
+			String hello = "Hello!";
+			out.addAll(bus.getOutInterceptors());
+			bus.getOutInterceptors().clear();
+			client.echo(hello);
+		}
+		finally {
+			bus.getOutInterceptors().addAll(out);
+		}
 	}
 
 	@Test(expected = SOAPFaultException.class)
 	@RunAsClient
 	public void koTest2(@ArquillianResource URL baseURL) throws MalformedURLException {
 		String hello = "Hello!";
+		SimpleWSS4J client = getClient(baseURL, "kermitt", "nofrogg");
+		client.echo(hello);
+	}
+
+	private final SimpleWSS4J getClient(URL baseURL, String username, String password) throws MalformedURLException {
+		SimpleWSS4J client = getClient(baseURL);
+		((BindingProvider) client).getRequestContext().put("ws-security.username", username);
+		((BindingProvider) client).getRequestContext().put("ws-security.password", password);
+		return client;
+	}
+
+	private final SimpleWSS4J getClient(URL baseURL) throws MalformedURLException {
 		URL wsdlURL = new URL(baseURL + SN + "?wsdl");
 		Service service = Service.create(wsdlURL, SERVICE);
 		SimpleWSS4J client = service.getPort(PORT, SimpleWSS4J.class);
-		client.echo(hello);
-		Assert.fail();
+		Client proxy = ClientProxy.getClient(client);
+		proxy.getOutInterceptors().add(new LoggingOutInterceptor());
+		proxy.getInInterceptors().add(new LoggingInInterceptor());
+		return client;
 	}
 }
