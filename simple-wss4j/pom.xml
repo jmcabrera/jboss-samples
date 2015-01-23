@@ -24,9 +24,27 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-api</artifactId>
-      <version>${cxf.version}</version>
+      <groupId>org.jboss.ws</groupId>
+      <artifactId>jbossws-api</artifactId>
+      <version>1.0.2.Final</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.ws</groupId>
+      <artifactId>jbossws-spi</artifactId>
+      <version>2.3.0.Final</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.as</groupId>
+      <artifactId>jboss-as-webservices-server-integration</artifactId>
+      <version>7.4.0.Final-redhat-19</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.ws.cxf</groupId>
+      <artifactId>jbossws-cxf-server</artifactId>
+      <version>4.3.0.Final-redhat-3</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -37,60 +55,16 @@
     </dependency>
   </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-codegen-plugin</artifactId>
-        <version>${cxf.version}</version>
-        <executions>
-          <execution>
-            <id>generate-cxf</id>
-            <phase>prepare-package</phase>
-            <configuration>
-              <sourceRoot>${basedir}/src/main/generated/</sourceRoot>
-              <wsdlOptions>
-                <wsdlOption>
-                  <wsdl>${project.build.directory}/generated/wsdl/SimpleWSS4j.wsdl</wsdl>
-                  <!-- <wsdl>${basedir}/src/main/resources/wsdl/test.xml</wsdl> -->
-                </wsdlOption>
-              </wsdlOptions>
-            </configuration>
-            <goals>
-              <goal>wsdl2java</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.cxf</groupId>
-        <artifactId>cxf-java2ws-plugin</artifactId>
-        <version>${cxf.version}</version>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-frontend-jaxws</artifactId>
-            <version>${cxf.version}</version>
-          </dependency>
-        </dependencies>
-        <executions>
-          <execution>
-            <id>process-classes</id>
-            <phase>process-classes</phase>
-            <configuration>
-              <className>com.finin.jboss.samples.SimpleWSS4J</className>
-              <genWsdl>true</genWsdl>
-              <!-- <verbose>true</verbose> -->
-              <frontend>jaxws</frontend>
-              <databinding>jaxb</databinding>
-            </configuration>
-            <goals>
-              <goal>java2ws</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+  <repositories>
+    <repository>
+      <id>redhat</id>
+      <url>http://maven.repository.redhat.com/techpreview/all</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 </project>

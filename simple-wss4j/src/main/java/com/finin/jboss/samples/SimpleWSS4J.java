@@ -12,7 +12,7 @@ import static com.finin.jboss.samples.SimpleWSS4J.*;
  * @author a208220 - Juan Manuel CABRERA
  *
  */
-@WebService(wsdlLocation = "wsdl/test.xml", portName = PN, serviceName = SN, targetNamespace = TNS)
+@WebService(wsdlLocation = "WEB-INF/wsdl/test.xml", targetNamespace = TNS, serviceName = SN, portName = PN)
 public interface SimpleWSS4J {
 
 	String	TNS			= "http://test";

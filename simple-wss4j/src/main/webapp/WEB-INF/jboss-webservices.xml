@@ -1,0 +1,8 @@
+<webservices
+  xmlns="http://www.jboss.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+    http://www.jboss.com/xml/ns/javaee http://anonsvn.jboss.org/repos/jbossws/spi/trunk/src/main/resources/schema/jboss_web_services_1.3.xsd">
+  <config-name />
+  <config-file>WEB-INF/endpoint-config.xml</config-file>
+</webservices>

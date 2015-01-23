@@ -23,6 +23,7 @@ public class PasswordCallback implements CallbackHandler {
 	public PasswordCallback() {
 		passwords.put("alice", "alicepassword");
 		passwords.put("bob", "bobpassword");
+		passwords.put("kermitt", "frogg");
 	}
 
 	/**
