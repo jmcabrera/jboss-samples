@@ -1,9 +1,9 @@
 package com.finin.jboss.samples;
 
-import static com.finin.jboss.samples.SimpleWSS4JImpl.PORT;
-import static com.finin.jboss.samples.SimpleWSS4JImpl.PREFIX;
 import static com.finin.jboss.samples.SimpleWSS4JImpl.SERVICE;
 import static com.finin.jboss.samples.SimpleWSS4JImpl.SN;
+import static com.finin.jboss.samples.SimpleWSS4JImpl.PORT;
+import static com.finin.jboss.samples.SimpleWSS4JImpl.PREFIX;
 
 import java.io.File;
 import java.net.MalformedURLException;

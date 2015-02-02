@@ -23,6 +23,7 @@ public class SimpleWSS4JImpl implements SimpleWSS4J {
 
 	public static final QName		SERVICE	= new QName(TNS, SN);
 	public static final QName		PORT		= new QName(TNS, PN);
+	
 	public static final String	PREFIX	= "wss4j-";
 
 	/**
