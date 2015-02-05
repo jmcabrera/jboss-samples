@@ -6,12 +6,8 @@
   <endpoint-config>
     <config-name>com.finin.jboss.samples.SimpleWSS4JImpl</config-name>
     <property>
-      <property-name>ws-security.username</property-name>
-      <property-value>kermitt</property-value>
-    </property>
-    <property>
-      <property-name>ws-security.callback-handler</property-name>
-      <property-value>com.finin.jboss.samples.PasswordCallback</property-value>
+      <property-name>ws-security.ut.validator</property-name>
+      <property-value>com.finin.jboss.samples.CustomUTValidator</property-value>
     </property>
   </endpoint-config>
 </jaxws-config>

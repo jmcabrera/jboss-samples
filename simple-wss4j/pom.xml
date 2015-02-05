@@ -23,32 +23,20 @@
       <version>1.6.15</version>
       <scope>provided</scope>
     </dependency>
-
-    <!-- Test -->
-    <dependency>
-      <groupId>org.jboss.ws</groupId>
-      <artifactId>jbossws-api</artifactId>
-      <version>1.0.2.Final</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-rt-ws-policy</artifactId>
-      <version>${cxf.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-bundle</artifactId>
-      <version>${cxf.version}</version>
-      <scope>test</scope>
-    </dependency>
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-ws-security</artifactId>
       <version>${cxf.version}</version>
-      <scope>test</scope>
+      <scope>provided</scope>
     </dependency>
+
+    <!-- Test -->
+<!--     <dependency> -->
+<!--       <groupId>org.apache.cxf</groupId> -->
+<!--       <artifactId>cxf-bundle</artifactId> -->
+<!--       <version>${cxf.version}</version> -->
+<!--       <scope>test</scope> -->
+<!--     </dependency> -->
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-rt-transports-http</artifactId>
