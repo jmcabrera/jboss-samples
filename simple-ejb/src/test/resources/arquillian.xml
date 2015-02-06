@@ -12,7 +12,7 @@
     <configuration>
       <property name="jbossHome">${env.JBOSS_HOME}</property>
       <property name="javaVmArguments">-Djboss.server.base.dir=jboss/standalone</property>
-      <property name="modulePath">${env.JBOSS_HOME}/modules;jboss/modules</property>
+      <property name="modulePath">${env.JBOSS_HOME}/modules${path.separator}jboss/modules</property>
     </configuration>
   </container>
 </arquillian>
